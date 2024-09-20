@@ -1,5 +1,5 @@
 import json
-
+import yaml
 
 def read_file(path_file):
     with open(path_file) as file:
@@ -8,4 +8,7 @@ def read_file(path_file):
 
 
 def parse(data):
-    return json.loads(data)
+    if data == 'json':
+        return json.load(data)
+    if data == 'yml' or 'yaml':
+        return yaml.safe_load(data)
