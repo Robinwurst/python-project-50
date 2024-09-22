@@ -1,18 +1,29 @@
 import pytest
-import os
-from hexlet_code import generate_diff
+from pathlib import Path
+from hexlet_code.generate_diff import generate_diff
 
 
 @pytest.fixture
 def prepared_files(request):
     file1, file2, expected, format_name = request.param
 
-    fixtures_path = os.path.join(os.path.dirname(__file__), "fixtures")
+    fixtures_path = Path(__file__).parent / "fixtures"
 
-    with open(os.path.join(fixtures_path, expected)) as result_file:
+    file1_path = fixtures_path / file1
+    file2_path = fixtures_path / file2
+    expected_path = fixtures_path / expected
+
+    if not file1_path.exists():
+        raise FileNotFoundError(f"File not found: {file1_path}")
+    if not file2_path.exists():
+        raise FileNotFoundError(f"File not found: {file2_path}")
+    if not expected_path.exists():
+        raise FileNotFoundError(f"File not found: {expected_path}")
+
+    with open(expected_path) as result_file:
         return (
-            os.path.join(fixtures_path, file1),
-            os.path.join(fixtures_path, file2),
+            str(file1_path),
+            str(file2_path),
             result_file.read(),
             format_name
         )
