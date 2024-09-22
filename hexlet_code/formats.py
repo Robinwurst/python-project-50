@@ -8,3 +8,5 @@ def formating(diff, format_name):
         return plain.plain(diff)
     elif format_name == 'json':
         return make_json.make_json(diff)
+    else:
+        raise ValueError('Wrong format')
