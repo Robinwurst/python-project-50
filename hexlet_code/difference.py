@@ -1,5 +1,4 @@
 def get_diff(data1, data2):
-
     diff = []
     keys = sorted(set(data1.keys()) | set(data2.keys()))
 
