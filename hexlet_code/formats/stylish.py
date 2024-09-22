@@ -2,48 +2,41 @@ INDENT = ' '
 SPACES_COUNT = 4
 
 
-def stylish(diff):
-    def iter(tree, depth=0):
+def stylish(diff, depth=0):
+    result = ['{']
+    offset = depth + SPACES_COUNT
+    for node in diff:
 
-        result = ['{']
-        offset = depth + SPACES_COUNT
-        for node in tree:
+        key, type = node.get('key'), node.get('type')
+        value, new_value = node.get('value'), node.get('new_value')
+        value_str = deep_line(value, depth)
+        new_value_str = deep_line(new_value, depth)
 
-            key, type = node.get('key'), node.get('type')
-            value, new_value = node.get('value'), node.get('new_value')
-            value_str = deep_line(value)
-            new_value_str = deep_line(new_value)
-            spaces = INDENT * (offset - 2)
-            added = f'{spaces}+ {key}: {value_str}'
-            removed = f'{spaces}- {key}: {value_str}'
-            samed = f'{spaces}  {key}: {value_str}'
-            changed = f'{spaces}+ {key}: {new_value_str}'
+        spaces = INDENT * (offset - 2)
 
-            if type == 'add':
-                result.append(added)
-            elif type == 'remove':
-                result.append(removed)
-            elif type == 'same':
-                result.append(samed)
-            elif type == 'change':
-                result.append(removed)
-                result.append(changed)
-            elif type == 'children':
-                result.append(f'{INDENT * offset}{key}: '
-                              + iter(value, offset))
+        added = f'{spaces}+ {key}: {value_str}'
+        removed = f'{spaces}- {key}: {value_str}'
+        samed = f'{spaces}  {key}: {value_str}'
+        changed = f'{spaces}+ {key}: {new_value_str}'
 
-        result.append(f'{INDENT * depth + "}"}')
-        return '\n'.join(result)
+        if type == 'add':
+            result.append(added)
+        elif type == 'remove':
+            result.append(removed)
+        elif type == 'same':
+            result.append(samed)
+        elif type == 'change':
+            result.append(removed)
+            result.append(changed)
+        elif type == 'children':
+            result.append(f'{INDENT * offset}{key}: '
+                          + stylish(value, offset))
 
-    return iter(diff)
+    result.append(f'{INDENT * depth + "}"}')
+    return '\n'.join(result)
 
 
-def make_str(string_value):
-    return str(string_value).lower() if isinstance(string_value, bool) \
-        else "null" if string_value is None else str(string_value)
-
-
-def deep_line(value, depth=0):
+def deep_line(value, depth):
     if not isinstance(value, dict):
         return make_str(value)
     lines = ['{']
@@ -57,3 +50,8 @@ def deep_line(value, depth=0):
             lines.append(format_key + make_str(current))
     lines.append(f'{INDENT * (depth + SPACES_COUNT) + "}"}')
     return '\n'.join(lines)
+
+
+def make_str(string_value):
+    return str(string_value).lower() if isinstance(string_value, bool) \
+        else "null" if string_value is None else str(string_value)

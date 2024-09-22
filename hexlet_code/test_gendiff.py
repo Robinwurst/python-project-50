@@ -1,16 +1,35 @@
 import pytest
+import os
 from hexlet_code import generate_diff
 
-import pytest
 
-from hexlet_code.parse_file import read_file
+@pytest.fixture
+def prepared_files(request):
+    file1, file2, expected, format_name = request.param
 
-file1, file2 = read_file
+    fixtures_path = os.path.join(os.path.dirname(__file__), "fixtures")
+
+    with open(os.path.join(fixtures_path, expected)) as result_file:
+        return (
+            os.path.join(fixtures_path, file1),
+            os.path.join(fixtures_path, file2),
+            result_file.read(),
+            format_name
+        )
 
 
-def test_plain():
-    sample = './tests/fixtures/plain_result.txt'
+@pytest.mark.parametrize(
+    argnames='prepared_files',
+    argvalues=[
+        ('file1.json', 'file2.json', 'result_stylish', 'stylish'),
+        ('file1.yml', 'file2.yml', 'result_stylish', 'stylish'),
+        ('file1.json', 'file2.json', 'result_plain', 'plain'),
+        ('file1.yml', 'file2.yml', 'result_plain', 'plain'),
+        ('file1.json', 'file2.json', 'result_json', 'json')
+    ],
+    indirect=True
+)
+def test_generate_diff(prepared_files):
+    file1, file2, result_render, format_name = prepared_files
 
-    with open(sample) as sample:
-        sample_content = sample.read()
-    assert generate_diff(file1, file2) != sample_content
+    assert result_render == generate_diff(file1, file2, format_name)
