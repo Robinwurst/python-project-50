@@ -1,8 +1,10 @@
-from hexlet_code.formats import stylish
+from hexlet_code.formating import stylish, make_json, plain
 
 
-def formating(diff, format_):
-    if format_ == 'stylish':
+def formating(diff, format_name):
+    if format_name == 'stylish':
         return stylish.stylish(diff)
-    elif format_ == 'plain':
+    elif format_name == 'plain':
         return plain.plain(diff)
+    elif format_name == 'json':
+        return make_json.make_json(diff)
