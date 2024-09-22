@@ -1,6 +1,7 @@
 import json
 import yaml
 
+
 def read_file(path_file):
     with open(path_file) as file:
         data = file.read()
