@@ -5,12 +5,13 @@ description = "Project 2 Hexlet"
 authors = ["robert <Neorganizm911@yandex.ru>"]
 readme = "README.md"
 packages = [
-    { include = "hexlet-code" },
+    { include = "hexlet_code" },
 ]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-
+pytest-cov = "^4.1.0"
+pyyaml = "^6.0.1"
 
 
 [tool.poetry.group.dev.dependencies]
