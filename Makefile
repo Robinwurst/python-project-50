@@ -8,7 +8,7 @@ test:
 		poetry run pytest
 
 test-coverage:
-		poetry run pytest --cov=gendiff --cov-report xml
+		poetry run pytest --cov=hexlet_code --cov-report xml
 
 publish:
 		poetry publish --dry-run
