@@ -1,4 +1,4 @@
-from hexlet_code.formating import stylish, make_json, plain
+from gendiff.formating import stylish, make_json, plain
 
 
 def formating(diff, format_name):

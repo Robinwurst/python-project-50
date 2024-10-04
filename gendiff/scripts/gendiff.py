@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from hexlet_code.parse_arguments import parse_arguments
-from hexlet_code.generate_diff import generate_diff
+from gendiff.parse_arguments import parse_arguments
+from gendiff.generate_diff import generate_diff
 
 
 def main():
