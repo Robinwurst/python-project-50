@@ -27,4 +27,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-gendiff = "hexlet-code.scripts.gendiff:main"
+gendiff = "gendiff.scripts.gendiff:main"
