@@ -5,7 +5,7 @@ description = "Project 2 Hexlet"
 authors = ["robert <Neorganizm911@yandex.ru>"]
 readme = "README.md"
 packages = [
-    { include = "hexlet_code" },
+    { include = "gendiff" },
 ]
 
 [tool.poetry.dependencies]
