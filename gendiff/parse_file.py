@@ -13,3 +13,5 @@ def parse(data):
         return json.load(data)
     if data == 'yml' or 'yaml':
         return yaml.safe_load(data)
+    else:
+        raise ValueError('Unknown extension')
