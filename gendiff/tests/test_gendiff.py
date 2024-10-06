@@ -1,6 +1,6 @@
 import pytest
 from pathlib import Path
-from gendiff.scripts.gendiff import generate_diff
+from gendiff.generate_diff import generate_diff
 
 
 @pytest.fixture
