@@ -1,17 +1,19 @@
 import json
 import yaml
+import os.path as path
 
 
-def read_file(path_file):
-    with open(path_file) as file:
+def get_data(file_path):
+    with open(file_path, 'r') as file:
         data = file.read()
-    return parse(data)
+        extension = path.splitext(file_path)[1]
+    return parse(data, extension)
 
 
-def parse(data):
-    if data == 'json':
-        return json.load(data)
-    if data == 'yml' or 'yaml':
+def parse(data, extension):
+    if extension == 'json':
+        return json.loads(data)
+    elif extension == 'yml' or 'yaml':
         return yaml.safe_load(data)
     else:
         raise ValueError('Unknown extension')
