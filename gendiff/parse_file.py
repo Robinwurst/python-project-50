@@ -6,14 +6,17 @@ import os.path as path
 def read_file(file_path):
     with open(file_path, 'r') as file:
         data = file.read()
-        extension = path.splitext(file_path)[1]
-    return parse(data, extension)
+    return get_extension(data)
 
 
 def parse(data, extension):
-    if extension == 'json':
+    if extension == '.json':
         return json.loads(data)
-    elif extension == 'yml' or 'yaml':
+    elif extension in ['.yml', '.yaml']:
         return yaml.safe_load(data)
     else:
         raise ValueError('Unknown extension')
+
+
+def get_extension(file_path):
+    return path.splitext(file_path)[1]
