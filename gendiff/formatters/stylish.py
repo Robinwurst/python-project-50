@@ -38,7 +38,7 @@ def stylish(diff, depth=0):
 
 def format_value_deep(value, depth):
     if not isinstance(value, dict):
-        return make_str(value)
+        return value_to_string_stylish(value)
     lines = ['{']
     for key in value.keys():
         current = value[key]
@@ -47,12 +47,12 @@ def format_value_deep(value, depth):
             lines.append(format_key
                          + format_value_deep(current, depth + SPACES_COUNT))
         else:
-            lines.append(format_key + make_str(current))
+            lines.append(format_key + value_to_string_stylish(current))
     lines.append(f'{INDENT * (depth + SPACES_COUNT) + "}"}')
     return '\n'.join(lines)
 
 
-def make_str(string_value):
+def value_to_string_stylish(string_value):
     if isinstance(string_value, bool):
         return str(string_value).lower()
     elif string_value is None:
