@@ -1,6 +1,6 @@
 from gendiff.difference import get_diff
 from gendiff.utils import read_file, get_extension, parse
-from gendiff.formats import formating
+from gendiff.formatters import stylish, json, plain
 
 
 def generate_diff(first_file_path, second_file_path, format_name='stylish'):
@@ -15,4 +15,15 @@ def generate_diff(first_file_path, second_file_path, format_name='stylish'):
 
     diff = get_diff(parsed_data1, parsed_data2)
 
-    return formating(diff, format_name)
+    return get_format(diff, format_name)
+
+
+def get_format(diff, format_name):
+    if format_name == 'stylish':
+        return stylish.stylish(diff)
+    elif format_name == 'plain':
+        return plain.plain(diff)
+    elif format_name == 'json':
+        return make_json.make_json(diff)
+    else:
+        raise ValueError('Wrong format')

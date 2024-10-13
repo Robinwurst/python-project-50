@@ -4,8 +4,8 @@ def plain(diff, path=''):
 
         key, type = node.get('key'), node.get('type')
         value, new_value = node.get('value'), node.get('new_value')
-        value_str = deep_line(value)
-        new_value_str = deep_line(new_value)
+        value_str = value_to_string(value)
+        new_value_str = value_to_string(new_value)
 
         new_path = key if path == '' else f'{path}.{key}'
         added = f"Property '{new_path}' was added with value: {value_str}"
@@ -24,10 +24,15 @@ def plain(diff, path=''):
     return '\n'.join(result)
 
 
-def deep_line(value):
+def value_to_string(value):
     if isinstance(value, dict):
         return '[complex value]'
+
     new_value = f"'{value}'" if isinstance(value, str) else value
 
-    return str(new_value).lower() if isinstance(new_value, bool) \
-        else "null" if new_value is None else str(new_value)
+    if isinstance(new_value, bool):
+        return str(new_value).lower()
+    elif new_value is None:
+        return "null"
+    else:
+        return str(new_value)

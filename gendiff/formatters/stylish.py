@@ -9,8 +9,8 @@ def stylish(diff, depth=0):
 
         key, type = node.get('key'), node.get('type')
         value, new_value = node.get('value'), node.get('new_value')
-        value_str = deep_line(value, depth)
-        new_value_str = deep_line(new_value, depth)
+        value_str = format_value_deep(value, depth)
+        new_value_str = format_value_deep(new_value, depth)
 
         spaces = INDENT * (offset - 2)
 
@@ -36,7 +36,7 @@ def stylish(diff, depth=0):
     return '\n'.join(result)
 
 
-def deep_line(value, depth):
+def format_value_deep(value, depth):
     if not isinstance(value, dict):
         return make_str(value)
     lines = ['{']
@@ -45,7 +45,7 @@ def deep_line(value, depth):
         format_key = f'{INDENT * (depth + SPACES_COUNT * 2)}{key}: '
         if isinstance(current, dict):
             lines.append(format_key
-                         + deep_line(current, depth + SPACES_COUNT))
+                         + format_value_deep(current, depth + SPACES_COUNT))
         else:
             lines.append(format_key + make_str(current))
     lines.append(f'{INDENT * (depth + SPACES_COUNT) + "}"}')
