@@ -6,7 +6,7 @@ import os.path as path
 def read_file(file_path):
     with open(file_path, 'r') as file:
         data = file.read()
-    return get_extension(data)
+    return parse(data, get_extension(file_path))
 
 
 def parse(data, extension):
@@ -20,3 +20,8 @@ def parse(data, extension):
 
 def get_extension(file_path):
     return path.splitext(file_path)[1]
+
+# def validate_extension(file_path):
+#     extension = get_extension(file_path)
+#     if extension not in ['.json', '.yml', '.yaml']:
+#         raise ValueError('Unknown extension')
