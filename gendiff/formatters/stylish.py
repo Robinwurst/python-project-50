@@ -53,5 +53,9 @@ def format_value_deep(value, depth):
 
 
 def make_str(string_value):
-    return str(string_value).lower() if isinstance(string_value, bool) \
-        else "null" if string_value is None else str(string_value)
+    if isinstance(string_value, bool):
+        return str(string_value).lower()
+    elif string_value is None:
+        return "null"
+    else:
+        return str(string_value)
