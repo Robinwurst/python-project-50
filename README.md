@@ -28,7 +28,7 @@
 
 ```bash
 git clone https://github.com/Robinwurst/python-project-50.git
-cd gendiff
+cd gendiff/tests/fixtures
 ```
 
 ### 2. Установка зависимостей
@@ -44,8 +44,10 @@ poetry install
 Теперь вы можете использовать `gendiff` для сравнения файлов. Пример использования:
 
 ```bash
-gendiff path/to/file1.json path/to/file2.json
+
+gendiff file1.json file2.json
 ```
+[![asciicast](https://asciinema.org/a/tHsx5w3enKPNCvHInm6N6wLXO.svg)](https://asciinema.org/a/tHsx5w3enKPNCvHInm6N6wLXO)
 
 #### Доступные опции:
 
@@ -54,23 +56,24 @@ gendiff path/to/file1.json path/to/file2.json
 Пример с указанием формата вывода:
 
 ```bash
-gendiff path/to/file1.json path/to/file2.json --format plain
+gendiff file1.json file2.json --format plain
 ```
-
+[![asciicast](https://asciinema.org/a/H5H8Q2wj6Yo2O1A05eDPCW1IU.svg)](https://asciinema.org/a/H5H8Q2wj6Yo2O1A05eDPCW1IU)
 ## Примеры использования
 
 ### Сравнение двух JSON файлов
 
 ```bash
-gendiff path/to/file1.json path/to/file2.json
+gendiff file1.json file2.json
 ```
-
+[![asciicast](https://asciinema.org/a/1884OStsTuBLcb2QguGKEsz4n.svg)](https://asciinema.org/a/1884OStsTuBLcb2QguGKEsz4n)
 ### Сравнение двух YAML файлов с выводом в формате JSON
 
 ```bash
-gendiff path/to/file1.yml path/to/file2.yml --format json
+gendiff file1.yml file2.yml --format json
 
 ```
+[![asciicast](https://asciinema.org/a/YsUAlWQm4jjtibSv9WSsnpQYp.svg)](https://asciinema.org/a/YsUAlWQm4jjtibSv9WSsnpQYp)
 
 ## Лицензия
 
