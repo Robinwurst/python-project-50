@@ -21,9 +21,9 @@ def generate_diff(first_file_path, second_file_path, format_name='stylish'):
 
 def get_format(diff, format_name):
     if format_name == 'stylish':
-        return stylish.stylish(diff)
+        return stylish.build_stylish(diff)
     elif format_name == 'plain':
-        return plain.plain(diff)
+        return plain.build_plain(diff)
     elif format_name == 'json':
         return make_json(diff)
     else:

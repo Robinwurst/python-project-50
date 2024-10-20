@@ -2,7 +2,7 @@ INDENT = ' '
 SPACES_COUNT = 4
 
 
-def stylish(diff, depth=0):
+def build_stylish(diff, depth=0):
     result = ['{']
     offset = depth + SPACES_COUNT
     for node in diff:
@@ -30,7 +30,7 @@ def stylish(diff, depth=0):
             result.append(changed)
         elif type == 'children':
             result.append(f'{INDENT * offset}{key}: '
-                          + stylish(value, offset))
+                          + build_stylish(value, offset))
 
     result.append(f'{INDENT * depth + "}"}')
     return '\n'.join(result)
@@ -38,7 +38,7 @@ def stylish(diff, depth=0):
 
 def format_value_deep(value, depth):
     if not isinstance(value, dict):
-        return value_to_string_stylish(value)
+        return make_value_to_string_stylish(value)
     lines = ['{']
     for key in value.keys():
         current = value[key]
@@ -47,12 +47,12 @@ def format_value_deep(value, depth):
             lines.append(format_key
                          + format_value_deep(current, depth + SPACES_COUNT))
         else:
-            lines.append(format_key + value_to_string_stylish(current))
+            lines.append(format_key + make_value_to_string_stylish(current))
     lines.append(f'{INDENT * (depth + SPACES_COUNT) + "}"}')
     return '\n'.join(lines)
 
 
-def value_to_string_stylish(string_value):
+def make_value_to_string_stylish(string_value):
     if isinstance(string_value, bool):
         return str(string_value).lower()
     elif string_value is None:
