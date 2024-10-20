@@ -1,12 +1,12 @@
 from gendiff.difference import get_diff
 from gendiff.formatters.json import make_json
-from gendiff.utils import read_file, get_extension, parse
+from gendiff.utils import read_file, get_data_format, parse
 from gendiff.formatters import stylish, plain
 
 
 def generate_diff(first_file_path, second_file_path, format_name='stylish'):
-    ext1 = get_extension(first_file_path)
-    ext2 = get_extension(second_file_path)
+    ext1 = get_data_format(first_file_path)
+    ext2 = get_data_format(second_file_path)
 
     data1 = read_file(first_file_path)
     data2 = read_file(second_file_path)
