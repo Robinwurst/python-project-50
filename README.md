@@ -23,7 +23,7 @@
 ## Установка
 
 ### 1. Клонирование репозитория
-
+[![asciicast](https://asciinema.org/a/GuZ76uzKHfwcwwkIVm0yFOX1v.svg)](https://asciinema.org/a/GuZ76uzKHfwcwwkIVm0yFOX1v)
 Сначала склонируйте репозиторий с GitHub:
 
 ```bash
@@ -36,8 +36,8 @@ cd python-project-50
 Установите зависимости с помощью Poetry:
 
 ```bash
-poetry install
-poetry build
+make install
+make build
 cd gendiff/tests/fixtures/
 ```
 
