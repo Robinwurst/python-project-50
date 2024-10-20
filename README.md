@@ -21,9 +21,9 @@
 - Удобный интерфейс командной строки.
 
 ## Установка
-
-### 1. Клонирование репозитория
 [![asciicast](https://asciinema.org/a/GuZ76uzKHfwcwwkIVm0yFOX1v.svg)](https://asciinema.org/a/GuZ76uzKHfwcwwkIVm0yFOX1v)
+### 1. Клонирование репозитория
+
 Сначала склонируйте репозиторий с GitHub:
 
 ```bash
