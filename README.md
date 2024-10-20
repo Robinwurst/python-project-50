@@ -28,7 +28,6 @@
 
 ```bash
 git clone https://github.com/Robinwurst/python-project-50.git
-cd gendiff/tests/fixtures
 ```
 
 ### 2. Установка зависимостей
