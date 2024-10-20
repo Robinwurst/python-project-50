@@ -37,6 +37,7 @@ git clone https://github.com/Robinwurst/python-project-50.git
 ```bash
 poetry install
 poetry build
+cd gendiff/tests/fixtures/
 ```
 
 ### 3. Использование
@@ -45,7 +46,7 @@ poetry build
 
 ```bash
 
-gendiff fixture/file1.json fixture/file2.json
+gendiff file1.json file2.json
 ```
 [![asciicast](https://asciinema.org/a/tHsx5w3enKPNCvHInm6N6wLXO.svg)](https://asciinema.org/a/tHsx5w3enKPNCvHInm6N6wLXO)
 
