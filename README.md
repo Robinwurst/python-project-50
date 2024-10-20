@@ -28,6 +28,7 @@
 
 ```bash
 git clone https://github.com/Robinwurst/python-project-50.git
+cd python-project-50
 ```
 
 ### 2. Установка зависимостей и сборка пакета
