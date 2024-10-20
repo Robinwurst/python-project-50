@@ -27,4 +27,4 @@ def get_format(diff, format_name):
     elif format_name == 'json':
         return make_json(diff)
     else:
-        raise ValueError('Wrong format')
+        raise ValueError(f'Unknown format: {format_name}')

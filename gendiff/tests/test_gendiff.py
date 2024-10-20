@@ -44,3 +44,19 @@ def test_generate_diff(prepared_files):
     file1, file2, result_render, format_name = prepared_files
 
     assert result_render == generate_diff(file1, file2, format_name)
+
+
+@pytest.mark.parametrize(
+    argnames='file1, file2, format_name',
+    argvalues=[
+        ('file1.json', 'file2.json', 'unknown_format'),
+        ('file1.yml', 'file2.yml', 'unknown_format'),
+    ]
+)
+def test_generate_diff_unknown_format(file1, file2, format_name):
+    fixtures_path = Path(__file__).parent / "fixtures"
+    file1_path = fixtures_path / file1
+    file2_path = fixtures_path / file2
+
+    with pytest.raises(ValueError, match=r'Unknown format: unknown_format'):
+        generate_diff(str(file1_path), str(file2_path), format_name)
