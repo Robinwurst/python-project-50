@@ -21,7 +21,7 @@
 - Удобный интерфейс командной строки.
 
 ## Установка
-[![asciicast](https://asciinema.org/a/GuZ76uzKHfwcwwkIVm0yFOX1v.svg)](https://asciinema.org/a/GuZ76uzKHfwcwwkIVm0yFOX1v)
+
 ### 1. Клонирование репозитория
 
 Сначала склонируйте репозиторий с GitHub:
@@ -36,9 +36,10 @@ cd python-project-50
 Установите зависимости с помощью Poetry:
 
 ```bash
-make install
-make build
-cd gendiff/tests/fixtures/
+poetry install # устанавливаем зависимости
+poetry build # создаем пакет 
+pip install --user dist/*.whl # установка пакета
+cd gendiff/tests/fixtures/ # расположение файлов из примера
 ```
 
 ### 3. Использование
